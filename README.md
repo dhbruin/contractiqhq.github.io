@@ -1,2 +1,571 @@
 # contractiqhq.github.io
 ContractIQ landing page
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ContractIQ — Federal Contract Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D1F35;
+      --navy-mid: #152942;
+      --gold: #C49A3C;
+      --gold-light: #E8B84B;
+      --cream: #F5F0E8;
+      --white: #FFFFFF;
+      --gray: #8A9BB0;
+      --border: rgba(196,154,60,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(196,154,60,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(196,154,60,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 48px;
+      background: rgba(13,31,53,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+
+    .logo span { color: var(--gold); }
+
+    nav a.cta-nav {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 10px 24px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    nav a.cta-nav:hover { background: var(--gold-light); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 140px 48px 80px;
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 6vw, 80px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--gray);
+      max-width: 560px;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 16px 40px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      margin: 0 48px;
+      width: calc(100% - 96px);
+    }
+
+    /* ── HOW IT WORKS ── */
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 48px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 60px;
+      max-width: 600px;
+      line-height: 1.2;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .step {
+      background: var(--navy-mid);
+      padding: 40px 32px;
+      position: relative;
+    }
+
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 900;
+      color: rgba(196,154,60,0.12);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .step h3 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    /* ── SAMPLE BRIEFING ── */
+    .sample {
+      background: var(--navy-mid);
+      border: 1px solid var(--border);
+      padding: 40px;
+      max-width: 720px;
+    }
+
+    .sample-header {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sample-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .sample-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .sample-field label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .sample-field p {
+      font-size: 14px;
+      color: var(--cream);
+    }
+
+    .sample-section {
+      margin-bottom: 20px;
+    }
+
+    .sample-section h4 {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .sample-section p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.65;
+    }
+
+    .competitor-tag {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--cream);
+      background: rgba(196,154,60,0.12);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      margin: 3px 3px 3px 0;
+    }
+
+    /* ── PRICING ── */
+    .pricing-card {
+      border: 1px solid var(--gold);
+      padding: 48px;
+      max-width: 480px;
+      position: relative;
+    }
+
+    .pricing-card::before {
+      content: 'STAGE 1';
+      position: absolute;
+      top: -10px;
+      left: 32px;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 2px 12px;
+      font-weight: 500;
+    }
+
+    .price {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .price-period {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 32px;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 40px;
+    }
+
+    .feature-list li {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--cream);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .feature-list li::before {
+      content: '—';
+      color: var(--gold);
+      font-size: 12px;
+    }
+
+    .coming-soon {
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .coming-soon p {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 12px;
+    }
+
+    .coming-soon-item {
+      font-size: 14px;
+      color: var(--gray);
+      padding: 6px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .coming-soon-item::before {
+      content: '◦';
+      color: var(--gold);
+      opacity: 0.5;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 40px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    footer .logo { font-size: 18px; }
+
+    footer p {
+      font-size: 13px;
+      color: var(--gray);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero > * {
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .hero > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero > *:nth-child(2) { animation-delay: 0.25s; }
+    .hero > *:nth-child(3) { animation-delay: 0.4s; }
+    .hero > *:nth-child(4) { animation-delay: 0.55s; }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
+      .hero { padding: 120px 24px 60px; }
+      .section { padding: 70px 24px; }
+      footer { padding: 32px 24px; }
+      .sample-grid { grid-template-columns: 1fr; }
+      .pricing-card { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Contract<span>IQ</span></div>
+    <a href="https://buy.stripe.com/test_00w5kweXs0secX44cp9b000" class="cta-nav">Subscribe — $99/mo</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Federal Contract Intelligence</div>
+    <h1>Win more<br/>government<br/><em>contracts.</em></h1>
+    <p class="hero-sub">ContractIQ delivers a daily AI-powered briefing of federal contract opportunities matched to your NAICS code — with market intelligence, competitor analysis, and recommended actions.</p>
+    <div class="hero-actions">
+      <a href="https://buy.stripe.com/test_00w5kweXs0secX44cp9b000" class="btn-primary">Start Your Subscription</a>
+      <span class="hero-note">$99/mo &nbsp;·&nbsp; Cancel anytime</span>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section">
+    <div class="section-label">How it works</div>
+    <div class="section-title">Intelligence delivered before your morning coffee.</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>You subscribe</h3>
+        <p>Enter your NAICS code. We configure your daily briefing pipeline to your specific market.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>We scan SAM.gov</h3>
+        <p>Every morning at 7am ET, we query SAM.gov for new opportunities matching your code — filtered to only what's new.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>AI enriches each opportunity</h3>
+        <p>Claude analyzes each contract and cross-references USASpending award history to build competitive context.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Briefing hits your inbox</h3>
+        <p>A structured briefing for each opportunity: scope, requirements, key dates, competitors, and recommended actions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAMPLE BRIEFING -->
+  <section class="section" style="padding-top: 0;">
+    <div class="section-label">Sample briefing</div>
+    <div class="section-title">What lands in your inbox every morning.</div>
+    <div class="sample">
+      <div class="sample-header">ContractIQ Daily Briefing &nbsp;·&nbsp; NAICS 541512</div>
+      <div class="sample-title">Supply Chain Management DevSecOps and Integration (SCMDSO)</div>
+      <div class="sample-grid">
+        <div class="sample-field">
+          <label>Contracting Agency</label>
+          <p>Dept. of the Army, ACC-APG</p>
+        </div>
+        <div class="sample-field">
+          <label>Notice Type</label>
+          <p>Sources Sought</p>
+        </div>
+        <div class="sample-field">
+          <label>Posted Date</label>
+          <p>April 26, 2026</p>
+        </div>
+        <div class="sample-field">
+          <label>Response Deadline</label>
+          <p>May 10, 2026</p>
+        </div>
+      </div>
+      <div class="sample-section">
+        <h4>Market Context</h4>
+        <p>Within NAICS 541512, DoD is the most active buyer with avg. award of $1.2M. Top incumbents in this space include:</p>
+        <div style="margin-top: 10px;">
+          <span class="competitor-tag">Booz Allen Hamilton — 6 awards</span>
+          <span class="competitor-tag">Accenture Federal — 4 awards</span>
+          <span class="competitor-tag">SAIC — 3 awards</span>
+        </div>
+      </div>
+      <div class="sample-section">
+        <h4>Recommended Actions</h4>
+        <p>Submit capability statement by deadline · Assess FedRAMP authorization readiness · Monitor for formal solicitation · Consider teaming arrangements with incumbent vendors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section">
+    <div class="section-label">Pricing</div>
+    <div class="section-title">Simple, transparent pricing.</div>
+    <div class="pricing-card">
+      <div class="price">$99</div>
+      <div class="price-period">per month · billed monthly · cancel anytime</div>
+      <ul class="feature-list">
+        <li>Daily briefings filtered to your NAICS code</li>
+        <li>SAM.gov opportunity monitoring</li>
+        <li>USASpending competitor intelligence</li>
+        <li>AI-generated scope &amp; requirements analysis</li>
+        <li>Recommended actions per opportunity</li>
+        <li>Deduplication — only new opportunities, every day</li>
+      </ul>
+      <a href="https://buy.stripe.com/test_00w5kweXs0secX44cp9b000" class="btn-primary" style="display:block; text-align:center;">Get Started Today</a>
+      <div class="coming-soon">
+        <p>Coming soon</p>
+        <div class="coming-soon-item">Bid scoring — Green / Yellow / Red ratings</div>
+        <div class="coming-soon-item">Proposal assistance</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo">Contract<span>IQ</span></div>
+    <p>© 2026 ContractIQ &nbsp;·&nbsp; david@contractiqhq.com</p>
+  </footer>
+
+</body>
+</html>
