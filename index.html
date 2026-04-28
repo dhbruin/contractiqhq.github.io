@@ -30,7 +30,6 @@
       overflow-x: hidden;
     }
 
-    /* ── GRID BACKGROUND ── */
     body::before {
       content: '';
       position: fixed;
@@ -43,7 +42,6 @@
       z-index: 0;
     }
 
-    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -51,21 +49,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 20px 48px;
+      padding: 12px 48px;
       background: rgba(13,31,53,0.85);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: 0.02em;
-    }
-
-    .logo span { color: var(--gold); }
 
     nav a.cta-nav {
       font-size: 13px;
@@ -81,7 +69,6 @@
 
     nav a.cta-nav:hover { background: var(--gold-light); }
 
-    /* ── HERO ── */
     .hero {
       position: relative;
       z-index: 1;
@@ -123,10 +110,7 @@
       margin-bottom: 28px;
     }
 
-    h1 em {
-      font-style: normal;
-      color: var(--gold);
-    }
+    h1 em { font-style: normal; color: var(--gold); }
 
     .hero-sub {
       font-size: 18px;
@@ -157,28 +141,10 @@
       transition: background 0.2s, transform 0.2s;
     }
 
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-1px);
-    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
 
-    .hero-note {
-      font-size: 13px;
-      color: var(--gray);
-    }
+    .hero-note { font-size: 13px; color: var(--gray); }
 
-    /* ── DIVIDER ── */
-    .divider {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      margin: 0 48px;
-      width: calc(100% - 96px);
-    }
-
-    /* ── HOW IT WORKS ── */
     .section {
       position: relative;
       z-index: 1;
@@ -226,21 +192,9 @@
       margin-bottom: 16px;
     }
 
-    .step h3 {
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--white);
-      margin-bottom: 10px;
-    }
+    .step h3 { font-size: 16px; font-weight: 500; color: var(--white); margin-bottom: 10px; }
+    .step p { font-size: 14px; font-weight: 300; color: var(--gray); line-height: 1.65; }
 
-    .step p {
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--gray);
-      line-height: 1.65;
-    }
-
-    /* ── SAMPLE BRIEFING ── */
     .sample {
       background: var(--navy-mid);
       border: 1px solid var(--border);
@@ -281,14 +235,9 @@
       margin-bottom: 4px;
     }
 
-    .sample-field p {
-      font-size: 14px;
-      color: var(--cream);
-    }
+    .sample-field p { font-size: 14px; color: var(--cream); }
 
-    .sample-section {
-      margin-bottom: 20px;
-    }
+    .sample-section { margin-bottom: 20px; }
 
     .sample-section h4 {
       font-size: 11px;
@@ -298,11 +247,7 @@
       margin-bottom: 8px;
     }
 
-    .sample-section p {
-      font-size: 14px;
-      color: var(--gray);
-      line-height: 1.65;
-    }
+    .sample-section p { font-size: 14px; color: var(--gray); line-height: 1.65; }
 
     .competitor-tag {
       display: inline-block;
@@ -314,7 +259,6 @@
       margin: 3px 3px 3px 0;
     }
 
-    /* ── PRICING ── */
     .pricing-card {
       border: 1px solid var(--gold);
       padding: 48px;
@@ -344,16 +288,9 @@
       margin-bottom: 4px;
     }
 
-    .price-period {
-      font-size: 14px;
-      color: var(--gray);
-      margin-bottom: 32px;
-    }
+    .price-period { font-size: 14px; color: var(--gray); margin-bottom: 32px; }
 
-    .feature-list {
-      list-style: none;
-      margin-bottom: 40px;
-    }
+    .feature-list { list-style: none; margin-bottom: 40px; }
 
     .feature-list li {
       font-size: 15px;
@@ -366,17 +303,9 @@
       gap: 12px;
     }
 
-    .feature-list li::before {
-      content: '—';
-      color: var(--gold);
-      font-size: 12px;
-    }
+    .feature-list li::before { content: '—'; color: var(--gold); font-size: 12px; }
 
-    .coming-soon {
-      margin-top: 32px;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-    }
+    .coming-soon { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border); }
 
     .coming-soon p {
       font-size: 12px;
@@ -395,17 +324,12 @@
       gap: 10px;
     }
 
-    .coming-soon-item::before {
-      content: '◦';
-      color: var(--gold);
-      opacity: 0.5;
-    }
+    .coming-soon-item::before { content: '◦'; color: var(--gold); opacity: 0.5; }
 
-    /* ── FOOTER ── */
     footer {
       position: relative;
       z-index: 1;
-      padding: 40px 48px;
+      padding: 32px 48px;
       border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
@@ -414,34 +338,24 @@
       gap: 16px;
     }
 
-    footer .logo { font-size: 18px; }
+    footer p { font-size: 13px; color: var(--gray); }
 
-    footer p {
-      font-size: 13px;
-      color: var(--gray);
-    }
-
-    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .hero > * {
-      opacity: 0;
-      animation: fadeUp 0.7s ease forwards;
-    }
-
+    .hero > * { opacity: 0; animation: fadeUp 0.7s ease forwards; }
     .hero > *:nth-child(1) { animation-delay: 0.1s; }
     .hero > *:nth-child(2) { animation-delay: 0.25s; }
     .hero > *:nth-child(3) { animation-delay: 0.4s; }
     .hero > *:nth-child(4) { animation-delay: 0.55s; }
 
     @media (max-width: 640px) {
-      nav { padding: 16px 24px; }
+      nav { padding: 12px 24px; }
       .hero { padding: 120px 24px 60px; }
       .section { padding: 70px 24px; }
-      footer { padding: 32px 24px; }
+      footer { padding: 28px 24px; }
       .sample-grid { grid-template-columns: 1fr; }
       .pricing-card { padding: 32px 24px; }
     }
@@ -451,7 +365,7 @@
 
   <!-- NAV -->
   <nav>
-    <div class="logo">Contract<span>IQ</span></div>
+    <img src="/Contract IQ Logo.png" alt="ContractIQ" style="height: 56px;" />
     <a href="https://tally.so/r/2EbZ69" class="cta-nav">Get Started — $99/mo</a>
   </nav>
 
@@ -561,7 +475,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="logo">Contract<span>IQ</span></div>
+    <img src="/Contract IQ Logo.png" alt="ContractIQ" style="height: 40px;" />
     <p>© 2026 ContractIQ &nbsp;·&nbsp; david@contractiqhq.com</p>
   </footer>
 
