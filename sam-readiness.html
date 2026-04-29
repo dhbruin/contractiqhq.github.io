@@ -350,15 +350,24 @@
 
   .form {
     display: flex;
+    flex-direction: column;
     gap: 12px;
     max-width: 480px;
     margin: 0 auto;
-    flex-wrap: wrap;
   }
 
-  .form input[type="email"] {
+  .form-row {
+    display: flex;
+    gap: 12px;
+  }
+  .form-row input {
     flex: 1;
-    min-width: 240px;
+    min-width: 0;
+  }
+
+  .form input[type="text"],
+  .form input[type="email"] {
+    width: 100%;
     padding: 14px 18px;
     background: var(--navy-deep);
     border: 1px solid var(--rule);
@@ -369,12 +378,13 @@
     outline: none;
     transition: border-color 0.2s;
   }
-  .form input[type="email"]:focus {
+  .form input:focus {
     border-color: var(--gold);
   }
   .form input::placeholder { color: var(--text-muted); }
 
   .form button {
+    width: 100%;
     padding: 14px 28px;
     background: var(--gold);
     color: var(--navy-deep);
@@ -733,6 +743,10 @@
         We'll also let you know when it's time to come back to ContractIQ.
       </p>
       <div class="form">
+        <div class="form-row">
+          <input type="text" id="firstNameInput" placeholder="First name" required aria-label="First name">
+          <input type="text" id="lastNameInput" placeholder="Last name" required aria-label="Last name">
+        </div>
         <input type="email" id="emailInput" placeholder="you@yourcompany.com" required aria-label="Email address">
         <button id="submitBtn" type="button">Send the Checklist</button>
       </div>
@@ -764,6 +778,8 @@
   // Lead Capture" workflow once it exists.
   const WEBHOOK_URL = 'REPLACE_WITH_YOUR_N8N_WEBHOOK_URL';
 
+  const firstNameInput = document.getElementById('firstNameInput');
+  const lastNameInput = document.getElementById('lastNameInput');
   const emailInput = document.getElementById('emailInput');
   const submitBtn = document.getElementById('submitBtn');
   const successMsg = document.getElementById('formSuccess');
@@ -789,7 +805,18 @@
 
   async function handleSubmit() {
     hideMessages();
+    const firstName = firstNameInput.value.trim();
+    const lastName = lastNameInput.value.trim();
     const email = emailInput.value.trim();
+
+    if (!firstName) {
+      showError('Please enter your first name.');
+      return;
+    }
+    if (!lastName) {
+      showError('Please enter your last name.');
+      return;
+    }
     if (!isValidEmail(email)) {
       showError('Please enter a valid email address.');
       return;
@@ -803,6 +830,8 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          firstName: firstName,
+          lastName: lastName,
           email: email,
           source: 'sam-readiness-page',
           capturedAt: new Date().toISOString()
@@ -811,6 +840,8 @@
 
       if (response.ok) {
         showSuccess();
+        firstNameInput.value = '';
+        lastNameInput.value = '';
         emailInput.value = '';
         submitBtn.textContent = 'Sent ✓';
       } else {
@@ -826,8 +857,10 @@
   }
 
   submitBtn.addEventListener('click', handleSubmit);
-  emailInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') handleSubmit();
+  [firstNameInput, lastNameInput, emailInput].forEach(input => {
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') handleSubmit();
+    });
   });
 </script>
 
