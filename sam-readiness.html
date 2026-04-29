@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Get SAM.gov Registered First — ContractIQ</title>
+<meta name="description" content="A step-by-step guide to SAM.gov registration. Free. Takes 2–4 weeks. Come back to ContractIQ when you're approved." />
+
+<!-- Fonts: DM Sans body + Cormorant Garamond display, matching ContractIQ brand -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy: #0A2342;
+    --navy-deep: #061629;
+    --navy-light: #14365C;
+    --gold: #C9A44E;
+    --gold-bright: #E0B85F;
+    --gold-soft: rgba(201, 164, 78, 0.15);
+    --paper: #F5F2E8;
+    --text: #E8EAED;
+    --text-soft: rgba(232, 234, 237, 0.75);
+    --text-muted: rgba(232, 234, 237, 0.55);
+    --rule: rgba(201, 164, 78, 0.25);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy-deep);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Subtle radial backdrop suggesting lighthouse beam */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -20%;
+    right: -10%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, var(--gold-soft) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── HEADER ─────────────────────────────── */
+  header {
+    padding: 28px 0 24px;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo-wrap {
+    display: inline-block;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .logo-wrap:hover { opacity: 0.85; }
+
+  .logo-img {
+    height: 110px;
+    width: auto;
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    .logo-img { height: 88px; }
+  }
+
+  /* ─── HERO ────────────────────────────────── */
+  .hero {
+    padding: 80px 0 56px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 6px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(38px, 6vw, 58px);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+  }
+  h1 .accent { color: var(--gold); font-style: italic; }
+
+  .hero-sub {
+    font-size: 19px;
+    color: var(--text-soft);
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .ornament {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 40px auto 0;
+    position: relative;
+  }
+  .ornament::before, .ornament::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  .ornament::before { left: -10px; }
+  .ornament::after { right: -10px; }
+
+  /* ─── REASSURANCE PANEL ───────────────────── */
+  .reassurance {
+    background: var(--navy);
+    border-left: 3px solid var(--gold);
+    padding: 32px 36px;
+    margin: 56px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .reassurance h2 {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .reassurance p {
+    color: var(--text-soft);
+    margin-bottom: 12px;
+  }
+  .reassurance p:last-child { margin-bottom: 0; }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin: 56px 0 72px;
+  }
+  .stat {
+    text-align: center;
+    padding: 28px 16px;
+    background: var(--navy);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  @media (max-width: 600px) {
+    .stats { grid-template-columns: 1fr; }
+  }
+
+  /* ─── SECTION TITLES ──────────────────────── */
+  .section-title {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 500;
+    margin: 72px 0 12px;
+    letter-spacing: -0.3px;
+  }
+  .section-lede {
+    color: var(--text-soft);
+    font-size: 17px;
+    margin-bottom: 40px;
+    max-width: 640px;
+  }
+
+  /* ─── STEP WALKTHROUGH ────────────────────── */
+  .step {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 28px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    font-family: var(--serif);
+    font-size: 56px;
+    font-weight: 500;
+    color: var(--gold);
+    line-height: 1;
+    text-align: right;
+  }
+
+  .step-body h3 {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+  .step-body p {
+    color: var(--text-soft);
+    margin-bottom: 14px;
+  }
+  .step-body ul {
+    margin: 12px 0 14px 0;
+    padding-left: 0;
+    list-style: none;
+  }
+  .step-body li {
+    color: var(--text-soft);
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .step-body li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--gold);
+    font-size: 11px;
+  }
+
+  .step-tip {
+    background: var(--gold-soft);
+    border-left: 2px solid var(--gold);
+    padding: 14px 18px;
+    margin-top: 16px;
+    border-radius: 0 3px 3px 0;
+    font-size: 15px;
+  }
+  .step-tip strong { color: var(--gold); font-weight: 600; }
+
+  .step-link {
+    display: inline-block;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+  .step-link:hover { border-color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .step { grid-template-columns: 1fr; gap: 8px; }
+    .step-num { text-align: left; font-size: 44px; }
+  }
+
+  /* ─── PITFALLS ────────────────────────────── */
+  .pitfalls {
+    margin: 80px 0 60px;
+  }
+  .pitfall {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: var(--navy);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--gold);
+    padding: 22px 28px;
+    margin-bottom: 14px;
+    border-radius: 0 4px 4px 0;
+  }
+  .pitfall-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--gold-bright);
+    margin-bottom: 6px;
+  }
+  .pitfall-desc {
+    color: var(--text-soft);
+    font-size: 15px;
+  }
+
+  /* ─── EMAIL CAPTURE ───────────────────────── */
+  .capture {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    border: 1px solid var(--rule);
+    padding: 56px 48px;
+    margin: 80px 0;
+    border-radius: 6px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .capture::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, var(--gold-soft) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .capture-content { position: relative; z-index: 1; }
+
+  .capture h2 {
+    font-family: var(--serif);
+    font-size: 34px;
+    font-weight: 500;
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+  .capture p {
+    color: var(--text-soft);
+    max-width: 540px;
+    margin: 0 auto 32px;
+  }
+
+  .form {
+    display: flex;
+    gap: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+
+  .form input[type="email"] {
+    flex: 1;
+    min-width: 240px;
+    padding: 14px 18px;
+    background: var(--navy-deep);
+    border: 1px solid var(--rule);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form input[type="email"]:focus {
+    border-color: var(--gold);
+  }
+  .form input::placeholder { color: var(--text-muted); }
+
+  .form button {
+    padding: 14px 28px;
+    background: var(--gold);
+    color: var(--navy-deep);
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .form button:hover {
+    background: var(--gold-bright);
+  }
+  .form button:active { transform: translateY(1px); }
+  .form button:disabled {
+    background: var(--text-muted);
+    cursor: not-allowed;
+  }
+
+  .form-note {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 16px;
+  }
+
+  .form-success, .form-error {
+    margin-top: 20px;
+    padding: 16px 20px;
+    border-radius: 4px;
+    font-size: 15px;
+    display: none;
+  }
+  .form-success {
+    background: rgba(120, 180, 100, 0.1);
+    border: 1px solid rgba(120, 180, 100, 0.3);
+    color: #B8DBA8;
+  }
+  .form-error {
+    background: rgba(220, 100, 100, 0.1);
+    border: 1px solid rgba(220, 100, 100, 0.3);
+    color: #E8B8B8;
+  }
+
+  /* ─── FOOTER ──────────────────────────────── */
+  footer {
+    padding: 60px 0 80px;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+    margin-top: 80px;
+  }
+  footer p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  footer .signoff {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px;
+    color: var(--text-soft);
+    margin-bottom: 14px;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* ─── ANIMATION ───────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero > * { animation: fadeUp 0.7s ease-out backwards; }
+  .hero .eyebrow { animation-delay: 0.05s; }
+  .hero h1 { animation-delay: 0.15s; }
+  .hero .hero-sub { animation-delay: 0.25s; }
+  .hero .ornament { animation-delay: 0.35s; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <a href="https://contractiqhq.com" class="logo-wrap" aria-label="ContractIQ home">
+      <img src="logo.png" alt="ContractIQ" class="logo-img" />
+    </a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="eyebrow">First things first</span>
+    <h1>Let's get you<br/><span class="accent">SAM.gov registered</span> first.</h1>
+    <p class="hero-sub">
+      You need an active SAM.gov registration before you can bid on any federal contract.
+      It's free, it takes a few weeks, and we'd rather wait for you than charge you for
+      opportunities you can't yet pursue.
+    </p>
+    <div class="ornament"></div>
+  </section>
+
+  <!-- WHY THIS MATTERS -->
+  <section class="reassurance">
+    <h2>Why we're sending you here instead of to checkout</h2>
+    <p>
+      ContractIQ delivers daily federal contract opportunities scored against your business.
+      But every federal contract requires the awardee to have an active SAM.gov registration —
+      no exceptions.
+    </p>
+    <p>
+      We could've taken your $99 today. We chose not to. Come back the moment your registration
+      is active and we'll start your daily briefings the next morning.
+    </p>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">$0</div>
+      <div class="stat-label">Cost to register</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2–4</div>
+      <div class="stat-label">Typical weeks</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1×</div>
+      <div class="stat-label">Annual renewal</div>
+    </div>
+  </div>
+
+  <!-- WALKTHROUGH -->
+  <h2 class="section-title">The step-by-step</h2>
+  <p class="section-lede">
+    Eight steps from "I want to bid on federal contracts" to "I'm in the system." The
+    waiting is the hard part — the work itself is straightforward if you prepare carefully.
+  </p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Gather your information before you start</h3>
+        <p>
+          Most registration delays come from missing or mismatched information. Get all of this
+          ready in one place before you touch sam.gov:
+        </p>
+        <ul>
+          <li>Your <strong>legal business name</strong>, exactly as it appears on your IRS records — punctuation, abbreviations, capitalization, all of it</li>
+          <li>Your <strong>EIN</strong> (Employer Identification Number) and the legal name attached to it</li>
+          <li>Your <strong>physical business address</strong> — no P.O. boxes</li>
+          <li>Your <strong>banking information</strong> for federal payment by EFT (routing and account numbers)</li>
+          <li>Your <strong>NAICS codes</strong> — the industry classifications for your business</li>
+          <li>Names and emails for <strong>three designated contacts at your company</strong>. Federal agencies will reach these people about your contracts. The roles are: Government Business (contracting officer's main contact), Electronic Business (federal payments), and Past Performance (agency evaluation surveys). The same person can hold all three roles.</li>
+        </ul>
+        <div class="step-tip">
+          <strong>Pro tip:</strong> The single most common rejection reason is a mismatch
+          between the business name you enter and the name the IRS has on file. Pull out
+          your IRS EIN confirmation letter (CP 575) and copy the name <em>character for character</em>.
+          If you can't find the letter, call the IRS Business and Specialty Tax Line at
+          <strong>800-829-4933</strong> to confirm.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Create a Login.gov account</h3>
+        <p>
+          Login.gov is the federal government's universal sign-in service. You'll need an
+          account to access SAM.gov.
+        </p>
+        <p>
+          <a href="https://secure.login.gov/sign_up/enter_email" target="_blank" rel="noopener" class="step-link">Create your Login.gov account →</a>
+        </p>
+        <div class="step-tip">
+          <strong>Use a permanent business email</strong> — not a personal Gmail you might
+          stop checking. Federal correspondence about your registration goes here, and a missed
+          email can stall your application by weeks.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Begin entity registration on SAM.gov</h3>
+        <p>
+          Go to the official site — only ever <strong>sam.gov</strong>. Beware of look-alike
+          domains charging fees. Registration is always free.
+        </p>
+        <p>
+          From the home page, click <em>Get Started</em> under Entity Registration. You'll
+          choose your entity type (most people select <em>Business or Organization</em>) and
+          enter your legal name and physical address.
+        </p>
+        <p>
+          <a href="https://sam.gov/entity-registration" target="_blank" rel="noopener" class="step-link">Start your SAM.gov registration →</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Validate your entity</h3>
+        <p>
+          SAM.gov cross-checks your business name and address against IRS and commercial databases.
+          If they match, the system displays your <strong>UEI</strong> (Unique Entity Identifier) —
+          a 12-character ID that replaced the old DUNS number.
+        </p>
+        <p>
+          If validation fails, you'll be asked to upload supporting documentation
+          (formation document, IRS letter, etc.) to prove your business exists as you described it.
+        </p>
+        <div class="step-tip">
+          <strong>This step accounts for the longest delays.</strong> Name mismatches add
+          days or weeks. Take time to verify your information before submitting.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>Complete the registration form</h3>
+        <p>
+          The full form has about 15 sections covering business info, financial info,
+          NAICS codes, certifications, and representations. Plan for one to three hours of
+          focused work, ideally split across two sessions.
+        </p>
+        <p>The most consequential sections:</p>
+        <ul>
+          <li><strong>NAICS codes</strong> — pick your primary plus any secondary codes that genuinely describe your work. These determine which opportunities you'll be eligible for.</li>
+          <li><strong>Banking information</strong> — federal payments are EFT-only. Errors here delay your future payments.</li>
+          <li><strong>Representations &amp; Certifications</strong> — these are legal attestations. Read every one carefully. False statements carry serious penalties.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h3>Get your CAGE code</h3>
+        <p>
+          CAGE (Commercial and Government Entity) codes are assigned by the Defense Logistics
+          Agency. If you don't already have one, SAM.gov requests it on your behalf during
+          registration.
+        </p>
+        <div class="step-tip">
+          CAGE assignment usually takes <strong>3–5 business days</strong> on top of the SAM
+          processing time. If it's been over 10 business days, contact DLA at
+          <strong>cagemail@dla.mil</strong> or <strong>1-877-352-2255</strong>.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">7</div>
+      <div class="step-body">
+        <h3>Submit and wait</h3>
+        <p>
+          After you submit, several validations run in parallel: IRS TIN matching, CAGE code
+          assignment, and entity verification.
+        </p>
+        <p>
+          Expected timeline:
+        </p>
+        <ul>
+          <li><strong>Official:</strong> 7–10 business days</li>
+          <li><strong>Realistic average:</strong> 2–4 weeks</li>
+          <li><strong>If issues arise:</strong> 6–10 weeks (validation failures, name mismatches)</li>
+        </ul>
+        <p>
+          Watch your email closely. SAM.gov will send messages if anything needs correction —
+          a slow reply on your end becomes a multi-week delay.
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">8</div>
+      <div class="step-body">
+        <h3>You're active. Come back to ContractIQ.</h3>
+        <p>
+          Once your status is <em>Active</em>, you're eligible to receive federal contract awards.
+          That's when ContractIQ becomes useful to you.
+        </p>
+        <p>
+          <a href="https://contractiqhq.com" class="step-link">Return to ContractIQ →</a>
+        </p>
+        <div class="step-tip">
+          <strong>Calendar reminder:</strong> SAM.gov registration expires every 12 months.
+          Renew at least 30–60 days before expiration to avoid a lapse — an expired
+          registration disqualifies you from awards immediately, no grace period.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COMMON PITFALLS -->
+  <h2 class="section-title">Pitfalls that delay registrations</h2>
+  <p class="section-lede">
+    Drawn from thousands of real registration outcomes — these are the failure patterns that
+    turn a 10-day process into a 6-week one.
+  </p>
+
+  <div class="pitfalls">
+    <div class="pitfall">
+      <div class="pitfall-title">Legal name doesn't match IRS records</div>
+      <div class="pitfall-desc">
+        <em>Smith &amp; Associates LLC</em> is not the same as <em>Smith and Associates, LLC</em>
+        to the validation system. Punctuation, abbreviations, and capitalization all matter.
+      </div>
+    </div>
+    <div class="pitfall">
+      <div class="pitfall-title">Invalid or outdated point-of-contact email</div>
+      <div class="pitfall-desc">
+        If a POC email belongs to someone no longer with your company, the registration is
+        rejected. Use stable business addresses, not personal ones.
+      </div>
+    </div>
+    <div class="pitfall">
+      <div class="pitfall-title">EIN/TIN mismatch with IRS</div>
+      <div class="pitfall-desc">
+        The legal name attached to your EIN must match exactly. Recent name changes that
+        haven't been reflected in IRS records will fail validation.
+      </div>
+    </div>
+    <div class="pitfall">
+      <div class="pitfall-title">Missing notarized administrator letter</div>
+      <div class="pitfall-desc">
+        New entities are required to submit a notarized letter appointing an Entity
+        Administrator. Get it notarized early — local notary availability adds days.
+      </div>
+    </div>
+    <div class="pitfall">
+      <div class="pitfall-title">Letting your registration expire</div>
+      <div class="pitfall-desc">
+        Registrations expire annually. There is no grace period — the moment they expire,
+        you are inactive in SAM.gov searches and ineligible for new awards.
+      </div>
+    </div>
+  </div>
+
+  <!-- EMAIL CAPTURE -->
+  <section class="capture">
+    <div class="capture-content">
+      <h2>Want this as a checklist?</h2>
+      <p>
+        Drop your email and we'll send you the SAM.gov registration prep checklist as a printable PDF.
+        We'll also let you know when it's time to come back to ContractIQ.
+      </p>
+      <div class="form">
+        <input type="email" id="emailInput" placeholder="you@yourcompany.com" required aria-label="Email address">
+        <button id="submitBtn" type="button">Send the Checklist</button>
+      </div>
+      <p class="form-note">No spam. We email you twice: once with the checklist, once when it's time to come back.</p>
+      <div class="form-success" id="formSuccess">
+        Checklist on its way to your inbox. We'll see you when your registration is active.
+      </div>
+      <div class="form-error" id="formError">
+        Something went wrong. Try again, or email us at hello@contractiqhq.com.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="signoff">— We'll be here when you're ready.</p>
+    <p>
+      Questions? Email <a href="mailto:hello@contractiqhq.com">hello@contractiqhq.com</a><br/>
+      <a href="https://contractiqhq.com">contractiqhq.com</a>
+    </p>
+  </footer>
+
+</div>
+
+<script>
+  // ─── Email capture ────────────────────────────────────────
+  // POSTs to your n8n webhook. Replace WEBHOOK_URL with the
+  // production webhook URL from the "ContractIQ — Readiness
+  // Lead Capture" workflow once it exists.
+  const WEBHOOK_URL = 'REPLACE_WITH_YOUR_N8N_WEBHOOK_URL';
+
+  const emailInput = document.getElementById('emailInput');
+  const submitBtn = document.getElementById('submitBtn');
+  const successMsg = document.getElementById('formSuccess');
+  const errorMsg = document.getElementById('formError');
+
+  function showError(text) {
+    errorMsg.textContent = text;
+    errorMsg.style.display = 'block';
+    successMsg.style.display = 'none';
+  }
+  function showSuccess() {
+    successMsg.style.display = 'block';
+    errorMsg.style.display = 'none';
+  }
+  function hideMessages() {
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+  }
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  async function handleSubmit() {
+    hideMessages();
+    const email = emailInput.value.trim();
+    if (!isValidEmail(email)) {
+      showError('Please enter a valid email address.');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    try {
+      const response = await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email,
+          source: 'sam-readiness-page',
+          capturedAt: new Date().toISOString()
+        })
+      });
+
+      if (response.ok) {
+        showSuccess();
+        emailInput.value = '';
+        submitBtn.textContent = 'Sent ✓';
+      } else {
+        showError('Something went wrong. Try again, or email us at hello@contractiqhq.com.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send the Checklist';
+      }
+    } catch (err) {
+      showError('Network error. Try again, or email us at hello@contractiqhq.com.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send the Checklist';
+    }
+  }
+
+  submitBtn.addEventListener('click', handleSubmit);
+  emailInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleSubmit();
+  });
+</script>
+
+</body>
+</html>
