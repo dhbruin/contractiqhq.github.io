@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Routing — ContractIQ</title>
+<meta name="robots" content="noindex,nofollow" />
+
+<!-- Fallback meta refresh in case JavaScript is disabled -->
+<meta http-equiv="refresh" content="3;url=/sam-readiness.html" />
+
+<style>
+  body {
+    margin: 0;
+    background: #061629;
+    color: #E8EAED;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+  }
+  .loader {
+    color: rgba(232, 234, 237, 0.6);
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .dot {
+    display: inline-block;
+    animation: pulse 1.4s infinite;
+  }
+  .dot:nth-child(2) { animation-delay: 0.2s; }
+  .dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+</style>
+
+<script>
+  // ─── ContractIQ post-Tally router ─────────────────────────
+  // Reads ?sam=... from the URL, sent by Tally with the
+  // customer's answer to "Do you have an active SAM.gov registration?"
+  // Routes "Yes" answers to Stripe checkout, all others to readiness.
+
+  const STRIPE_URL = 'https://buy.stripe.com/test_00w5kweXs0secX44cp9b000';
+  const READINESS_URL = '/sam-readiness.html';
+
+  function route() {
+    const params = new URLSearchParams(window.location.search);
+    const sam = (params.get('sam') || '').trim().toLowerCase();
+
+    // Anything that looks like a "Yes" goes to Stripe
+    const isRegistered = ['yes', 'y', 'true', 'active'].includes(sam);
+
+    const destination = isRegistered ? STRIPE_URL : READINESS_URL;
+    window.location.replace(destination);
+  }
+
+  // Run on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', route);
+  } else {
+    route();
+  }
+</script>
+
+</head>
+<body>
+  <div class="loader">
+    Redirecting<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+  </div>
+  <noscript>
+    <p style="color: #E8EAED;">
+      JavaScript is required for routing. <br/>
+      <a href="/sam-readiness.html" style="color: #C9A44E;">Click here to continue →</a>
+    </p>
+  </noscript>
+</body>
+</html>
