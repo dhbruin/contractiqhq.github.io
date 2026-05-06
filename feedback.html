@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContractIQ — Briefing Feedback</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0a2540;
+      --gold: #c9a449;
+      --soft-bg: #f4f4f4;
+      --text: #222;
+      --muted: #666;
+      --danger: #b91c1c;
+      --success: #15803d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--soft-bg);
+      font-family: 'DM Sans', 'Segoe UI', Tahoma, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .card {
+      background: #fff;
+      max-width: 560px;
+      width: 100%;
+      margin: 32px 16px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .header {
+      background: var(--navy);
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header img { height: 36px; display: block; }
+    .header .accent {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .body {
+      padding: 32px 28px;
+    }
+    h1 {
+      color: var(--navy);
+      font-size: 22px;
+      margin: 0 0 16px;
+    }
+    h2 {
+      color: var(--navy);
+      font-size: 18px;
+      margin: 0 0 12px;
+    }
+    p { margin: 0 0 14px; }
+    .muted { color: var(--muted); font-size: 14px; }
+    .state { display: none; }
+    .state.active { display: block; }
+
+    /* Reason picker */
+    .reason-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+    }
+    .reason-list li {
+      margin-bottom: 8px;
+    }
+    .reason-list label {
+      display: flex;
+      align-items: flex-start;
+      padding: 12px 14px;
+      background: var(--soft-bg);
+      border: 1px solid transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .reason-list label:hover {
+      border-color: var(--gold);
+    }
+    .reason-list input[type="radio"] {
+      margin: 4px 10px 0 0;
+      accent-color: var(--gold);
+    }
+    .reason-list .reason-text {
+      flex: 1;
+    }
+    .reason-list .reason-title {
+      font-weight: 500;
+      color: var(--navy);
+    }
+    .reason-list .reason-hint {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 14px;
+      resize: vertical;
+      margin-top: 8px;
+    }
+    textarea:focus { outline: 2px solid var(--gold); }
+
+    .button {
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .button:hover { background: #143659; }
+    .button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 16px;
+    }
+    .icon-success { color: var(--success); }
+    .icon-error { color: var(--danger); }
+
+    .footer {
+      background: var(--soft-bg);
+      padding: 16px 28px;
+      border-top: 1px solid #e0e0e0;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+    .footer a { color: var(--muted); text-decoration: none; }
+
+    .spinner {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      border: 3px solid #eee;
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="header">
+    <img src="logo.png" alt="ContractIQ">
+    <span class="accent">Briefing Feedback</span>
+  </div>
+
+  <div class="body">
+
+    <!-- Loading state (shown briefly while submitting positive feedback) -->
+    <div id="state-loading" class="state">
+      <div style="text-align:center; padding: 24px 0;">
+        <div class="spinner"></div>
+        <p class="muted" style="margin-top:16px;">Recording your feedback…</p>
+      </div>
+    </div>
+
+    <!-- Reason picker (for thumbs-down) -->
+    <div id="state-reason" class="state">
+      <h1>Help us tune your briefings</h1>
+      <p>We'd rather send you nothing than send weak matches. Tell us what missed and we'll adjust.</p>
+
+      <ul class="reason-list">
+        <li>
+          <label>
+            <input type="radio" name="reason" value="Wrong size">
+            <span class="reason-text">
+              <span class="reason-title">Wrong size</span>
+              <span class="reason-hint">Contract was too big or too small for our shop</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="reason" value="Wrong industry">
+            <span class="reason-text">
+              <span class="reason-title">Wrong industry</span>
+              <span class="reason-hint">NAICS matched but the actual work isn't our specialty</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="reason" value="Bad geography">
+            <span class="reason-text">
+              <span class="reason-title">Bad geography</span>
+              <span class="reason-hint">Location isn't workable for us</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="reason" value="Couldn't qualify">
+            <span class="reason-text">
+              <span class="reason-title">Couldn't qualify</span>
+              <span class="reason-hint">Set-aside, certification, or past performance gap</span>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="reason" value="Other">
+            <span class="reason-text">
+              <span class="reason-title">Other</span>
+              <span class="reason-hint">Tell us more below (optional)</span>
+            </span>
+          </label>
+        </li>
+      </ul>
+
+      <textarea id="notes" placeholder="Anything else we should know? (optional)"></textarea>
+
+      <div style="margin-top: 20px;">
+        <button id="submit-reason" class="button">Submit feedback</button>
+      </div>
+    </div>
+
+    <!-- Success state -->
+    <div id="state-success" class="state">
+      <div style="text-align:center;">
+        <svg class="icon icon-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+          <polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <h1>Got it — thank you</h1>
+        <p>Your feedback shapes the next briefing. We read every signal that comes back.</p>
+        <p class="muted">You can close this page.</p>
+      </div>
+    </div>
+
+    <!-- Error state -->
+    <div id="state-error" class="state">
+      <div style="text-align:center;">
+        <svg class="icon icon-error" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <h1>Something went wrong</h1>
+        <p>We couldn't record your feedback. If you'd like, just reply to the briefing email — we read every reply.</p>
+      </div>
+    </div>
+
+    <!-- Invalid state (missing params) -->
+    <div id="state-invalid" class="state">
+      <h1>This link looks incomplete</h1>
+      <p>Feedback links are sent inside your daily briefing email. Please use the buttons there to share feedback.</p>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    contractiqhq.com · Federal contract intelligence, delivered daily.
+  </div>
+</div>
+
+<script>
+  // CONFIG: production webhook URL
+  const WEBHOOK_URL = "https://contractiq.app.n8n.cloud/webhook/briefing-feedback";
+
+  // Read URL params
+  const params = new URLSearchParams(window.location.search);
+  const notice = params.get('notice');
+  const sub = params.get('sub');
+  const useful = (params.get('useful') || '').toLowerCase();
+
+  function show(stateId) {
+    document.querySelectorAll('.state').forEach(el => el.classList.remove('active'));
+    document.getElementById(stateId).classList.add('active');
+  }
+
+  async function postFeedback(payload) {
+    try {
+      // mode: 'no-cors' lets us POST cross-origin without preflight or response reading.
+      // The webhook still receives the data; we just can't read its response.
+      await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      // Optimistic success — n8n will record what it received.
+      show('state-success');
+    } catch (err) {
+      console.error('Feedback POST failed:', err);
+      show('state-error');
+    }
+  }
+
+  // Validate inputs
+  if (!notice || !sub || (useful !== 'yes' && useful !== 'no')) {
+    show('state-invalid');
+  } else if (useful === 'yes') {
+    // Thumbs up: fire and confirm
+    show('state-loading');
+    postFeedback({ notice, sub, useful: 'yes' });
+  } else {
+    // Thumbs down: show reason picker first
+    show('state-reason');
+    document.getElementById('submit-reason').addEventListener('click', () => {
+      const reasonInput = document.querySelector('input[name="reason"]:checked');
+      const reason = reasonInput ? reasonInput.value : '';
+      const notes = document.getElementById('notes').value.trim();
+      // Reason is optional — user may submit with no selection if they just want to flag it
+      const button = document.getElementById('submit-reason');
+      button.disabled = true;
+      button.textContent = 'Submitting…';
+      show('state-loading');
+      postFeedback({ notice, sub, useful: 'no', reason, notes });
+    });
+  }
+</script>
+
+</body>
+</html>
