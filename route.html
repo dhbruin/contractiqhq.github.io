@@ -52,7 +52,7 @@
     const sam = (params.get('sam') || '').trim().toLowerCase();
 
     // Anything that looks like a "Yes" goes to Stripe
-    const isRegistered = ['yes', 'y', 'true', 'active'].includes(sam);
+    const isRegistered = sam.startsWith('yes') || sam === 'y' || sam === 'true' || sam === 'active';
 
     const destination = isRegistered ? STRIPE_URL : READINESS_URL;
     window.location.replace(destination);
