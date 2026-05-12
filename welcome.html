@@ -58,6 +58,24 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 22px;
@@ -246,6 +264,14 @@
       color: var(--gray);
     }
 
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--gold-light); }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -265,6 +291,7 @@
 
     @media (max-width: 640px) {
       nav { padding: 16px 24px; }
+      .nav-links { display: none; }
       main { padding: 120px 24px 60px; }
       footer { padding: 32px 24px; }
       .callout { flex-direction: column; gap: 8px; }
@@ -275,6 +302,10 @@
 
   <nav>
    <img src="/logo.png" alt="ContractIQ" style="height: 120px;" />
+   <div class="nav-links">
+     <a href="/terms.html">Terms</a>
+     <a href="/privacy.html">Privacy</a>
+   </div>
   </nav>
 
   <main>
@@ -304,8 +335,8 @@
       <div class="step">
         <div class="step-num">02</div>
         <div class="step-content">
-          <h3>We scan SAM.gov at 9am ET</h3>
-          <p>Every morning, ContractIQ queries SAM.gov for new federal contract opportunities matched to your business — filtered to only what's new since your last briefing.</p>
+          <h3>We scan SAM.gov by 9 AM ET</h3>
+          <p>Every business morning, ContractIQ queries SAM.gov for new federal contract opportunities matched to your business — filtered to only what's new since your last briefing.</p>
         </div>
       </div>
       <div class="step">
@@ -321,14 +352,14 @@
       <div class="callout-time">9:00 AM</div>
       <div class="callout-text">
         <strong>Your first briefing arrives tomorrow morning.</strong><br/>
-        Check your inbox at 9am ET. If you don't see it, check your spam folder and mark ContractIQ as a trusted sender.
+        Check your inbox by 9 AM ET. If you don't see it, check your spam folder and mark ContractIQ as a trusted sender.
       </div>
     </div>
   </main>
 
   <footer>
     <div class="logo">Contract<span>IQ</span></div>
-    <p>Questions? &nbsp;·&nbsp; david@contractiqhq.com</p>
+    <p>© 2026 ContractIQ, a product of Integritas Advisors LLC &nbsp;·&nbsp; <a href="/terms.html">Terms</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="mailto:david@contractiqhq.com">david@contractiqhq.com</a></p>
   </footer>
 
 </body>
