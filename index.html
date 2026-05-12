@@ -55,6 +55,26 @@
       border-bottom: 1px solid var(--border);
     }
 
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-left: auto;
+      margin-right: 28px;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
     nav a.cta-nav {
       font-size: 13px;
       font-weight: 500;
@@ -305,6 +325,23 @@
 
     .feature-list li::before { content: '—'; color: var(--gold); font-size: 12px; }
 
+    .refund-note {
+      font-size: 12px;
+      color: var(--gray);
+      text-align: center;
+      margin-top: 16px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .refund-note::before {
+      content: '✓';
+      color: var(--gold);
+      font-style: normal;
+      margin-right: 6px;
+      font-weight: 600;
+    }
+
     .coming-soon { margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border); }
 
     .coming-soon p {
@@ -340,6 +377,14 @@
 
     footer p { font-size: 13px; color: var(--gray); }
 
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--gold-light); }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -353,6 +398,7 @@
 
     @media (max-width: 640px) {
       nav { padding: 12px 24px; }
+      .nav-links { display: none; }
       .hero { padding: 120px 24px 60px; }
       .section { padding: 70px 24px; }
       footer { padding: 28px 24px; }
@@ -366,6 +412,10 @@
   <!-- NAV -->
   <nav>
     <img src="/logo.png" alt="ContractIQ" style="height: 120px;" />
+    <div class="nav-links">
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
     <a href="https://tally.so/r/2EbZ69" class="cta-nav">Get Started — $99/mo</a>
   </nav>
 
@@ -393,7 +443,7 @@
       <div class="step">
         <div class="step-num">02</div>
         <h3>We scan SAM.gov</h3>
-        <p>Every morning at 7am ET, we query SAM.gov for new opportunities matching your business — filtered to only what's new since your last briefing.</p>
+        <p>Every business morning, we query SAM.gov for new opportunities matching your business — filtered to only what's new since your last briefing. Your briefing arrives by 9 AM ET.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
@@ -465,6 +515,7 @@
         <li>Deduplication — only new opportunities, every day</li>
       </ul>
       <a href="https://tally.so/r/2EbZ69" class="btn-primary" style="display:block; text-align:center;">Get Started Today</a>
+      <p class="refund-note">Try ContractIQ risk-free — full refund within 7 days if it's not for you.</p>
       <div class="coming-soon">
         <p>Coming soon</p>
         <div class="coming-soon-item">Bid scoring — Green / Yellow / Red ratings</div>
@@ -476,7 +527,7 @@
   <!-- FOOTER -->
   <footer>
     <img src="/logo.png" alt="ContractIQ" style="height: 120px;" />
-    <p>© 2026 ContractIQ &nbsp;·&nbsp; david@contractiqhq.com</p>
+    <p>© 2026 ContractIQ, a product of Integritas Advisors LLC &nbsp;·&nbsp; <a href="/terms.html">Terms</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="mailto:david@contractiqhq.com">david@contractiqhq.com</a></p>
   </footer>
 
 </body>
