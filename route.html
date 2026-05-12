@@ -4,10 +4,8 @@
 <meta charset="UTF-8" />
 <title>Routing — ContractIQ</title>
 <meta name="robots" content="noindex,nofollow" />
-
 <!-- Fallback meta refresh in case JavaScript is disabled -->
 <meta http-equiv="refresh" content="3;url=/sam-readiness.html" />
-
 <style>
   body {
     margin: 0;
@@ -37,27 +35,21 @@
     50% { opacity: 1; }
   }
 </style>
-
 <script>
   // ─── ContractIQ post-Tally router ─────────────────────────
   // Reads ?sam=... from the URL, sent by Tally with the
   // customer's answer to "Do you have an active SAM.gov registration?"
   // Routes "Yes" answers to Stripe checkout, all others to readiness.
-
-  const STRIPE_URL = 'https://buy.stripe.com/test_4gMdR27CM6SW2kEfZV4c800';
+  const STRIPE_URL = 'https://buy.stripe.com/bJe8wO5eFeXq4oL9Om1ZS00';
   const READINESS_URL = '/sam-readiness.html';
-
   function route() {
     const params = new URLSearchParams(window.location.search);
     const sam = (params.get('sam') || '').trim().toLowerCase();
-
     // Anything that looks like a "Yes" goes to Stripe
     const isRegistered = sam.startsWith('yes') || sam === 'y' || sam === 'true' || sam === 'active';
-
     const destination = isRegistered ? STRIPE_URL : READINESS_URL;
     window.location.replace(destination);
   }
-
   // Run on load
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', route);
@@ -65,7 +57,6 @@
     route();
   }
 </script>
-
 </head>
 <body>
   <div class="loader">
