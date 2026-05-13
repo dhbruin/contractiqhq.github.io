@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insights — ContractIQ</title>
+  <meta name="description" content="Practical guidance for small businesses winning federal government contracts. DCAA compliance, accounting systems, cash flow, and more — from a CPA's perspective." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D1F35;
+      --navy-mid: #152942;
+      --gold: #C49A3C;
+      --gold-light: #E8B84B;
+      --cream: #F5F0E8;
+      --white: #FFFFFF;
+      --gray: #8A9BB0;
+      --border: rgba(196,154,60,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(196,154,60,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(196,154,60,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 48px;
+      background: rgba(13,31,53,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-left: auto;
+      margin-right: 28px;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    nav a.cta-nav {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 10px 24px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    nav a.cta-nav:hover { background: var(--gold-light); }
+
+    .page-header {
+      position: relative;
+      z-index: 1;
+      padding: 160px 48px 80px;
+      max-width: 1200px;
+    }
+
+    .page-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .page-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    .page-header h1 em { font-style: normal; color: var(--gold); }
+
+    .page-header p {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--gray);
+      max-width: 560px;
+    }
+
+    .posts-section {
+      position: relative;
+      z-index: 1;
+      padding: 40px 48px 100px;
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2px;
+      background: var(--border);
+      max-width: 1200px;
+    }
+
+    .post-card {
+      background: var(--navy-mid);
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s;
+    }
+
+    .post-card:hover { background: #1a3050; }
+
+    .post-meta {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .post-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+
+    .post-excerpt {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .post-link {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+      align-self: flex-start;
+    }
+
+    .post-link:hover { color: var(--gold-light); }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 32px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    footer p { font-size: 13px; color: var(--gray); }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--gold-light); }
+
+    @media (max-width: 640px) {
+      nav { padding: 12px 24px; }
+      .nav-links { display: none; }
+      .page-header { padding: 120px 24px 40px; }
+      .posts-section { padding: 20px 24px 70px; }
+      footer { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/"><img src="/logo.png" alt="ContractIQ" style="height: 120px;" /></a>
+    <div class="nav-links">
+      <a href="/blog/">Insights</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+    <a href="https://tally.so/r/2EbZ69" class="cta-nav">Get Started — $99/mo</a>
+  </nav>
+
+  <!-- HEADER -->
+  <section class="page-header">
+    <div class="page-eyebrow">Insights</div>
+    <h1>Federal Contracting <em>Intelligence.</em></h1>
+    <p>Practical guidance from a CPA's perspective — DCAA compliance, accounting systems, cash flow, and the financial side of federal contracting. Published weekly.</p>
+  </section>
+
+  <!-- POSTS -->
+  <section class="posts-section">
+    <div class="posts-grid">
+
+      <!-- ====================================================
+           POST CARD TEMPLATE — copy this block for each new post.
+           Newest posts go FIRST.
+           ==================================================== -->
+      <article class="post-card">
+        <div class="post-meta">May 13, 2026 · DCAA Compliance</div>
+        <h2 class="post-title">Understanding the DCAA Audit Process: A Guide for Small Federal Contractors</h2>
+        <p class="post-excerpt">What triggers a DCAA audit, the types DCAA performs, how long they take, what happens when findings go against you, and how often these audits actually happen.</p>
+        <a href="/blog/2026-05-13-dcaa-audit-process.html" class="post-link">Read article →</a>
+      </article>
+      <!-- ==================================================== -->
+
+      <!-- Add more <article class="post-card"> blocks above this comment as you publish.
+           Cadence: weekly. Newest first. -->
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="/logo.png" alt="ContractIQ" style="height: 120px;" />
+    <p>© 2026 ContractIQ, a product of Integritas Advisors LLC &nbsp;·&nbsp; <a href="/terms.html">Terms</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="mailto:david@contractiqhq.com">david@contractiqhq.com</a></p>
+  </footer>
+
+</body>
+</html>
