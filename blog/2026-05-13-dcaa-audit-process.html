@@ -316,7 +316,8 @@
 
     @media (max-width: 640px) {
       nav { padding: 12px 24px; }
-      .nav-links { display: none; }
+      .nav-links { gap: 16px; margin-right: 12px; }
+      .nav-mobile-hide { display: none; }
       .article-header, .article-body, .article-cta { padding-left: 24px; padding-right: 24px; }
       .article-header { padding-top: 160px; }
       .cta-box { padding: 36px 24px; }
@@ -333,8 +334,8 @@
     <a href="/"><img src="/logo.png" alt="ContractIQ" style="height: 120px;" /></a>
     <div class="nav-links">
       <a href="/blog/">Insights</a>
-      <a href="/terms.html">Terms</a>
-      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html" class="nav-mobile-hide">Terms</a>
+      <a href="/privacy.html" class="nav-mobile-hide">Privacy</a>
     </div>
     <a href="https://tally.so/r/2EbZ69" class="cta-nav">Get Started — $99/mo</a>
   </nav>
