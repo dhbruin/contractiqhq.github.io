@@ -223,12 +223,15 @@
     footer a:hover { color: var(--gold-light); }
 
     @media (max-width: 640px) {
-      nav { padding: 12px 24px; }
-      .nav-links { display: none; }
-      .page-header { padding: 120px 24px 40px; }
-      .posts-section { padding: 20px 24px 70px; }
-      footer { padding: 28px 24px; }
-    }
+  nav { padding: 12px 24px; }
+  .nav-links { gap: 16px; margin-right: 12px; }
+  .nav-mobile-hide { display: none; }
+  .hero { padding: 120px 24px 60px; }
+  .section { padding: 70px 24px; }
+  footer { padding: 28px 24px; }
+  .sample-grid { grid-template-columns: 1fr; }
+  .pricing-card { padding: 32px 24px; }
+}
   </style>
 </head>
 <body>
@@ -236,11 +239,11 @@
   <!-- NAV -->
   <nav>
     <a href="/"><img src="/logo.png" alt="ContractIQ" style="height: 120px;" /></a>
-    <div class="nav-links">
-      <a href="/blog/">Insights</a>
-      <a href="/terms.html">Terms</a>
-      <a href="/privacy.html">Privacy</a>
-    </div>
+   <div class="nav-links">
+  <a href="/blog/">Insights</a>
+  <a href="/terms.html" class="nav-mobile-hide">Terms</a>
+  <a href="/privacy.html" class="nav-mobile-hide">Privacy</a>
+</div>
     <a href="https://tally.so/r/2EbZ69" class="cta-nav">Get Started — $99/mo</a>
   </nav>
 
