@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding the DCAA Audit Process — ContractIQ</title>
+  <meta name="description" content="What triggers a DCAA audit, the types DCAA performs, how long they take, what happens when findings go against you, and how often these audits actually happen." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0D1F35;
+      --navy-mid: #152942;
+      --gold: #C49A3C;
+      --gold-light: #E8B84B;
+      --cream: #F5F0E8;
+      --white: #FFFFFF;
+      --gray: #8A9BB0;
+      --gray-light: #B8C5D6;
+      --border: rgba(196,154,60,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(196,154,60,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(196,154,60,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 48px;
+      background: rgba(13,31,53,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      margin-left: auto;
+      margin-right: 28px;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    nav a.cta-nav {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 10px 24px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    nav a.cta-nav:hover { background: var(--gold-light); }
+
+    .article-header {
+      position: relative;
+      z-index: 1;
+      padding: 140px 48px 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray);
+      text-decoration: none;
+      margin-bottom: 40px;
+      display: inline-block;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: var(--gold); }
+
+    .article-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .article-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .article-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    .article-meta {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      color: var(--gray);
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-body {
+      position: relative;
+      z-index: 1;
+      padding: 0 48px 60px;
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--gray-light);
+    }
+
+    .article-body > * { margin-top: 28px; }
+    .article-body > *:first-child { margin-top: 40px; }
+
+    .article-lede {
+      font-size: 20px;
+      line-height: 1.7;
+      color: var(--cream);
+      font-weight: 400;
+    }
+
+    .article-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+      margin-top: 56px;
+    }
+
+    .article-body p strong, .article-body li strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .article-body a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(196,154,60,0.4);
+      transition: border-color 0.2s;
+    }
+
+    .article-body a:hover { border-bottom-color: var(--gold); }
+
+    .article-body ul, .article-body ol {
+      padding-left: 24px;
+    }
+
+    .article-body li {
+      margin-bottom: 12px;
+    }
+
+    .article-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 32px;
+      font-size: 15px;
+    }
+
+    .article-body th, .article-body td {
+      text-align: left;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-body th {
+      color: var(--gold);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .article-body tr:last-child td {
+      border-bottom: none;
+      font-weight: 500;
+      color: var(--white);
+    }
+
+    .article-body .source-note {
+      font-size: 13px;
+      color: var(--gray);
+      font-style: italic;
+      margin-top: 16px;
+    }
+
+    .article-cta {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 60px auto 0;
+      padding: 0 48px;
+    }
+
+    .cta-box {
+      background: var(--navy-mid);
+      border: 1px solid var(--gold);
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    .cta-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .cta-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 28px;
+    }
+
+    .cta-box .btn-primary {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 16px 40px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .cta-box .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .cta-note {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 16px;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 32px 48px;
+      margin-top: 80px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    footer p { font-size: 13px; color: var(--gray); }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover { color: var(--gold-light); }
+
+    @media (max-width: 640px) {
+      nav { padding: 12px 24px; }
+      .nav-links { display: none; }
+      .article-header, .article-body, .article-cta { padding-left: 24px; padding-right: 24px; }
+      .article-header { padding-top: 120px; }
+      .cta-box { padding: 36px 24px; }
+      footer { padding: 28px 24px; }
+      .article-body table { font-size: 14px; }
+      .article-body th, .article-body td { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/"><img src="/logo.png" alt="ContractIQ" style="height: 120px;" /></a>
+    <div class="nav-links">
+      <a href="/blog/">Insights</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+    <a href="https://tally.so/r/2EbZ69" class="cta-nav">Get Started — $99/mo</a>
+  </nav>
+
+  <!-- ARTICLE HEADER -->
+  <header class="article-header">
+    <a href="/blog/" class="back-link">← Back to Insights</a>
+    <div class="article-eyebrow">DCAA Compliance</div>
+    <h1 class="article-title">Understanding the DCAA Audit Process: A Guide for Small Federal Contractors</h1>
+    <div class="article-meta">May 13, 2026 &nbsp;·&nbsp; 7 min read</div>
+  </header>
+
+  <!-- ARTICLE BODY -->
+  <article class="article-body">
+
+    <p class="article-lede">If your company is moving into federal contracting, the Defense Contract Audit Agency (DCAA) may eventually become a regular part of your operations. For some contractors, that day never arrives. For others, it shows up faster than expected. This article covers what triggers a DCAA audit, the main audit types, how long they take, what happens when findings go against you, and how often these audits actually happen.</p>
+
+    <h2>Which contracts put you on DCAA's radar</h2>
+
+    <p>DCAA audits track the way the government pays. The contracts that trigger audit activity share one feature: the government is paying for your actual costs, not a fixed price for a defined deliverable. That gives DCAA something to verify.</p>
+
+    <ul>
+      <li><strong>Cost-reimbursement contracts are squarely in DCAA's territory.</strong> The government reimburses your actual allowable costs, and DCAA verifies which costs qualify.</li>
+      <li><strong>Time-and-materials and labor-hour contracts are also subject to ongoing audit activity.</strong> You bill hours and materials, and DCAA tests whether the hours reflect actual work.</li>
+      <li><strong>Firm-fixed-price contracts generally are not.</strong> Under fixed-price work, the government pays a set price for a defined deliverable. Your cost structure is your own concern.</li>
+    </ul>
+
+    <p>The practical implication: a contractor doing only firm-fixed-price work may go years without DCAA contact. The day that same contractor pursues a cost-reimbursement opportunity, the picture changes entirely.</p>
+
+    <h2>The main audit types</h2>
+
+    <p>DCAA performs several distinct reviews at different points in the contract lifecycle:</p>
+
+    <ul>
+      <li><strong>Pre-award accounting system audit (SF 1408).</strong> Tests whether your accounting system is designed to handle cost-type work. Performed before contract award.</li>
+      <li><strong>Incurred cost audit.</strong> Reviews actual costs claimed against cost-reimbursement contracts. Performed annually, well after the costs were incurred.</li>
+      <li><strong>Floor check.</strong> An unannounced visit to verify timekeeping practices in real time during contract performance.</li>
+      <li><strong>Business system audit.</strong> A periodic review of contractor business systems — accounting, estimating, purchasing, and others.</li>
+      <li><strong>Forward pricing, CAS, and TINA audits.</strong> Reviews tied to proposed pricing and specific compliance areas. Most small contractors do not encounter these.</li>
+    </ul>
+
+    <p>For a small contractor entering cost-type work for the first time, the SF 1408 is usually the first encounter. Floor checks and incurred cost audits come during and after performance.</p>
+
+    <h2>The pre-award audit (SF 1408)</h2>
+
+    <p>The pre-award audit is exactly what it sounds like: a review the government performs before deciding whether to award you a cost-reimbursement contract. The mechanism is Standard Form 1408 — a checklist completed by a DCAA auditor based on a site visit and your responses to a companion document.</p>
+
+    <p>The auditor evaluates about fifteen criteria. Proper segregation of direct and indirect costs. A timekeeping system that identifies labor by project. Exclusion of unallowable costs. Monthly posting of costs. Similar attributes. The auditor then issues a recommendation to the contracting officer — acceptable, acceptable with conditions, or not acceptable. The contracting officer, not DCAA, makes the actual contract decision.</p>
+
+    <p><strong>The pre-award audit is not automatic.</strong> The contracting officer requests it when a prospective contractor is being considered for cost-type work and either hasn't done government work before or hasn't done it recently. Once your system is found acceptable, that determination generally carries forward to your next cost-type contract.</p>
+
+    <p><strong>The timeline is short.</strong> From the contracting officer's request to the auditor's report is typically about two weeks. The actual on-site fieldwork is usually one to two days. Most of the effort sits on your side — preparing policies, walking the auditor through the system, producing documents. Two weeks is not enough time to build a compliant system from scratch.</p>
+
+    <p><strong>If findings are adverse, the contract is not "cancelled" — it just isn't awarded.</strong> There is no contract yet. The contracting officer typically has three paths:</p>
+
+    <ul>
+      <li><strong>Award with conditions.</strong> For minor deficiencies, the contracting officer may award the contract anyway with a corrective action plan and a follow-up review to confirm remediation.</li>
+      <li><strong>Decline pending fixes.</strong> For significant deficiencies, the contracting officer may decline to award until your system is corrected. You can fix the issues and request a re-audit, but the original opportunity may have gone to a competitor.</li>
+      <li><strong>Award to another offeror.</strong> For fundamental gaps that cannot be fixed in time, the contracting officer awards to someone else.</li>
+    </ul>
+
+    <p>The result in all three scenarios is the same: you lose the opportunity unless you can remediate fast. This is why pre-award readiness is something to build months — not weeks — before pursuing a cost-type contract.</p>
+
+    <h2>Audits during and after the contract</h2>
+
+    <p>Once you have a cost-type contract in performance, DCAA's attention turns to two main activities.</p>
+
+    <p><strong>Floor checks are unannounced by design.</strong> A DCAA auditor walks in, asks to see specific employees, and verifies your timekeeping system in real time — that today's hours are recorded, that employees can describe what they are charging to, that supervisors are actively approving time, and that changes have a proper audit trail. The unannounced nature is intentional. The agency wants uncoached employee responses. The on-site portion typically lasts a few hours. Findings are usually communicated within two to three weeks of the visit. (A modern footnote: DCAA revised its procedures in 2022-2023 to allow scheduled floor checks for established, lower-risk contractors in some situations. New contractors should still expect the classic unannounced visit.)</p>
+
+    <p><strong>Incurred cost audits are annual.</strong> Each year, contractors with cost-type contracts file an incurred cost submission within six months of fiscal year end. Once DCAA accepts the submission as adequate, the agency has up to twelve months to complete its audit. The audit checks whether your claimed costs meet federal standards. Timekeeping shows up here too, because labor is usually the largest single cost on a contract.</p>
+
+    <p>DCAA does not audit every submission. Since 2020, the agency has used risk-based sampling. Smaller contractors with clean submissions and lower dollar volume often receive a "low-risk memorandum" — a formal communication that establishes their final rates without a full audit. More on that below.</p>
+
+    <p><strong>When findings are adverse on an existing contract, the consequences differ.</strong> You already have the contract, so the question isn't whether you get it. The question is what happens now. The standard path:</p>
+
+    <ul>
+      <li><strong>Corrective Action Plan.</strong> The Administrative Contracting Officer (ACO) issues an Initial Determination Letter outlining the deficiencies. You respond with a corrective action plan covering remediation, timeline, and verification.</li>
+      <li><strong>Payment withholds.</strong> If your accounting or another business system is formally disapproved, the contracting officer can withhold up to 5 percent of payments on affected contracts — up to 10 percent if multiple business systems are disapproved. The withhold is released once corrective action is verified.</li>
+      <li><strong>Questioned and disallowed costs.</strong> Specific labor charges or other costs that cannot be substantiated may be questioned. If you cannot defend them, they become disallowed. You do not get reimbursed for those costs.</li>
+      <li><strong>Rare escalation.</strong> In cases involving deliberate misconduct — timesheet fraud, knowingly false certifications — consequences can escalate to False Claims Act exposure, contract termination, or debarment from federal contracting. These outcomes are reserved for clear intentional wrongdoing.</li>
+    </ul>
+
+    <p>For most contractors with honest deficiencies, the contract is not cancelled. Remediation is the standard path. But remediating under audit pressure costs significantly more than building a compliant system in advance.</p>
+
+    <h2>How often these audits actually happen</h2>
+
+    <p>DCAA's published reporting gives a useful sense of scale. In fiscal year 2024, the agency issued 2,465 audit reports and 7,629 memos, examining $599.8 billion in contract costs and identifying $15.9 billion in audit exceptions. About 4,400 contractors were engaged out of roughly 7,000 active contractors that year.</p>
+
+    <p>The breakdown:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Audit Category</th>
+          <th>Reports</th>
+          <th>Memos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Incurred Cost</td><td>530</td><td>3,058</td></tr>
+        <tr><td>Forward Pricing</td><td>649</td><td>94</td></tr>
+        <tr><td>Systems, CAS &amp; TINA</td><td>515</td><td>3,490</td></tr>
+        <tr><td>Claims &amp; Terminations</td><td>771</td><td>987</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>2,465</strong></td><td><strong>7,629</strong></td></tr>
+      </tbody>
+    </table>
+
+    <p class="source-note">Source: DCAA Report to Congress on FY 2024 Activities (March 31, 2025).</p>
+
+    <p>Two things worth knowing about this table.</p>
+
+    <p>An audit <em>report</em> is a formal full audit with findings. A <em>memo</em> is a shorter formal communication — most often a low-risk memorandum that establishes your rates without a full audit. Memos are not lesser outcomes. They are the standard format for risk-based reviews.</p>
+
+    <p>SF 1408 audits and floor checks are not broken out as separate line items. DCAA reports audits by purpose, not procedure. Pre-award audits are folded into Claims &amp; Terminations. Floor checks are folded into incurred cost or business system work. The specific counts for those procedures are not published.</p>
+
+    <p><strong>The most useful takeaway:</strong> of roughly 3,588 incurred cost dispositions in FY 2024, only 530 — about 15 percent — resulted in full audit reports. The other 85 percent were closed with memos, most being low-risk memoranda. For a small contractor with a clean submission and a modest dollar volume, the most likely outcome each year is a low-risk memo, not an audit.</p>
+
+    <h2>What this means for you</h2>
+
+    <p>DCAA readiness is not something you build reactively. The pre-award window is too short to fix a deficient system. Floor checks are unannounced. Incurred cost audits review work that has already been performed. By the time an audit is in motion, your ability to influence the outcome is largely set by what you built months or years before.</p>
+
+    <p>If your company expects to pursue cost-reimbursement or T&amp;M work in the next eighteen months, the time to start preparing is now. The next article in this series covers what that preparation looks like in practice — what an audit-ready timekeeping system requires, where small contractors most often fall short, what tools meet the requirement, and the cost of inadequate planning.</p>
+
+  </article>
+
+  <!-- ARTICLE CTA -->
+  <section class="article-cta">
+    <div class="cta-box">
+      <div class="cta-eyebrow">Federal contract intelligence, delivered daily</div>
+      <h3>Opportunities matched to your NAICS code, every business morning by 9 AM ET.</h3>
+      <a href="https://tally.so/r/2EbZ69" class="btn-primary">Get Started — $99/mo</a>
+      <p class="cta-note">Try ContractIQ risk-free — full refund within 7 days.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <img src="/logo.png" alt="ContractIQ" style="height: 120px;" />
+    <p>© 2026 ContractIQ, a product of Integritas Advisors LLC &nbsp;·&nbsp; <a href="/terms.html">Terms</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="mailto:david@contractiqhq.com">david@contractiqhq.com</a></p>
+  </footer>
+
+</body>
+</html>
